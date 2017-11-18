@@ -11,7 +11,8 @@
     "yoda": "off",
     "arrow-body-style": "off",
     "no-undef": "off",
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "no-use-before-define": "off"
   },
   "env": {
     "node": true
