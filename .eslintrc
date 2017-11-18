@@ -12,7 +12,8 @@
     "arrow-body-style": "off",
     "no-undef": "off",
     "no-shadow": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "import/extensions": "off"
   },
   "env": {
     "node": true

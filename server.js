@@ -5,10 +5,10 @@ import puppeteer from 'puppeteer';
 
 const { env } = process;
 const config = {
-  port: env.PORT || 3000,
-  host: env.HOST,
-  timeout: env.TIMEOUT || 500,
-  logLevel: env.DEBUG ? 'debug' : 'info'
+  port: env.PORT ? Number(env.PORT) : 3000,
+  host: env.HOST || '',
+  timeout: env.TIMEOUT ? Number(env.TIMEOUT) : 500,
+  logLevel: env.DEBUG === 'true' ? 'debug' : 'info'
 };
 
 const app = express();
@@ -67,7 +67,7 @@ app.listen(config.port, () => {
   log.info(`listening at http://localhost:${config.port}`);
 });
 
-process.on('SIGINT', function() {
+process.on('SIGINT', () => {
   log.info('Killing server . . .');
   process.exit(1);
 });

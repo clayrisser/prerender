@@ -1,5 +1,5 @@
 {
-  "name": "blogdown-prerender",
+  "name": "prerender",
   "version": "v0.0.1",
   "description": "Prerender BlogDown",
   "homepage": "https://github.com/thingdown/blogdown-prerender",
@@ -35,10 +35,10 @@
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha --compilers js:babel-core/register",
     "start": "node ./node_modules/nodemon/bin/nodemon -e js -x 'npm run lint && node ./node_modules/babel-cli/bin/babel-node server.js || exit 1'",
-    "build": "docker build -t thingdown/blogdown-prerender:latest -f ./Dockerfile .",
-    "push": "docker push -t thingdown/blogdown-prerender:latest",
-    "run": "docker run --name some-prerender --rm -p 3000:3000 thingdown/blogdown-prerender:latest",
-    "ssh": "docker run --name some-prerender --rm -it --execute /bin/sh jamrizzi/trailblaser:latest",
+    "build": "docker build -t thingdown/prerender:latest -f ./Dockerfile .",
+    "push": "docker push -t thingdown/prerender:latest",
+    "run": "docker run --name some-prerender --rm -p 3000:3000 thingdown/prerender:latest",
+    "ssh": "docker run --name some-prerender --rm -it --execute /bin/sh thingdown/prerender:latest",
     "essh": "docker exec -it some-prerender /bin/sh",
     "lint": "node ./node_modules/eslint/bin/eslint ./api ./config"
   },
