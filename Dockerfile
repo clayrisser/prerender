@@ -16,8 +16,6 @@ ENV HOST=""
 ENV TIMEOUT=500
 ENV DEBUG=false
 
-ADD https://github.com/krallin/tini/releases/download/v0.16.1/tini /bin/tini
-
 RUN apt-get update && apt-get install --no-install-recommends -y \
       git \
       gconf-service \
@@ -63,6 +61,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     apt-get update && \
     apt-get install --no-install-recommends -y \
       google-chrome-unstable && \
+    wget https://github.com/krallin/tini/releases/download/v0.16.1/tini /bin/tini && \
     chmod +x /bin/tini && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get purge --auto-remove -y curl && \

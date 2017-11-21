@@ -7,7 +7,7 @@ const { env } = process;
 const config = {
   port: env.PORT ? Number(env.PORT) : 3000,
   host: env.HOST || '',
-  timeout: env.TIMEOUT ? Number(env.TIMEOUT) : 500,
+  timeout: env.TIMEOUT ? Number(env.TIMEOUT) : null,
   logLevel: env.DEBUG === 'true' ? 'debug' : 'info'
 };
 
@@ -48,7 +48,7 @@ async function prerender({ url, host, timeout }) {
   });
   return page.evaluate((host, timeout) => {
     return new Promise((resolve, reject) => {
-      return window.setTimeout(() => {
+      function prerender() {
         try {
           let html = document.body.innerHTML;
           (document.body.innerHTML.match(/href="\/[^"]*/g) || []).map((match) => {
@@ -60,7 +60,16 @@ async function prerender({ url, host, timeout }) {
         } catch (err) {
           return reject(err);
         }
-      }, timeout);
+      }
+      if (timeout) {
+        return window.setTimeout(() => {
+          prerender();
+        }, timeout);
+      } else {
+        window.addEventListener('prerender-ready', function (e) {
+          prerender();
+        }, false);
+      }
     });
   }, host, timeout);
 }
