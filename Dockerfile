@@ -69,6 +69,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     rm -rf /src/*.deb
 
 COPY ./package.json /app
+COPY ./package-lock.json /app
 RUN npm install
 COPY . /app
 RUN npm prune --production

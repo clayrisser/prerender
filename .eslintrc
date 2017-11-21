@@ -13,7 +13,9 @@
     "no-undef": "off",
     "no-shadow": "off",
     "no-use-before-define": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "default-case": "off",
+    "no-useless-escape": "off"
   },
   "env": {
     "node": true

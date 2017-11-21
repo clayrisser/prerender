@@ -1,7 +1,7 @@
 import express from 'express';
 import url from 'url';
-import { Logger, transports } from 'winston';
 import puppeteer from 'puppeteer';
+import { Logger, transports } from 'winston';
 
 const { env } = process;
 const config = {
@@ -35,7 +35,10 @@ app.get('/*', async (req, res) => {
 
 async function prerender({ url, host, timeout }) {
   log.info('url', url);
-  host = host || url.substr(0, url.indexOf('#!') + 2);
+  const matches = url.match(/.+:\/{2}[^\/]+/g);
+  if (matches && matches.length > 0) {
+    host = matches[0];
+  }
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
   await page.goto(url).catch((err) => {
