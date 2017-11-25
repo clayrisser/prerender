@@ -37,7 +37,7 @@
     "start": "node ./node_modules/nodemon/bin/nodemon -e js -x 'npm run lint && node ./node_modules/babel-cli/bin/babel-node server.js || exit 1'",
     "docker:build": "docker build -t thingdown/prerender:latest -f ./Dockerfile .",
     "docker:push": "docker push thingdown/prerender:latest",
-    "docker:run": "docker run --name some-prerender --rm -p 3000:3000 thingdown/prerender:latest",
+    "docker:run": "docker run --name some-prerender --rm -p 8803:8803 thingdown/prerender:latest",
     "docker:ssh": "docker run --name some-prerender --rm -it --execute /bin/sh thingdown/prerender:latest",
     "docker:essh": "docker exec -it some-prerender /bin/sh",
     "lint": "node ./node_modules/eslint/bin/eslint ./api ./config"

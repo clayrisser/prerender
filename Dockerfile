@@ -7,11 +7,11 @@ FROM node:8-slim
 
 MAINTAINER Jam Risser (jamrizzi)
 
-EXPOSE 3000
+EXPOSE 8803
 
 WORKDIR /app
 
-ENV PORT=3000
+ENV PORT=8803
 ENV HOST=""
 ENV TIMEOUT=500
 ENV DEBUG=false
@@ -61,7 +61,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     apt-get update && \
     apt-get install --no-install-recommends -y \
       google-chrome-unstable && \
-    wget https://github.com/krallin/tini/releases/download/v0.16.1/tini /bin/tini && \
+    wget -O /bin/tini https://github.com/krallin/tini/releases/download/v0.16.1/tini && \
     chmod +x /bin/tini && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get purge --auto-remove -y curl && \
@@ -73,4 +73,4 @@ RUN npm install
 COPY . /app
 RUN npm prune --production
 
-ENTRYPOINT ["/bin/tini", "--", "node", "/app/node_modules/babel-cli/bin/babel-node", "/app/server.js"]
+ENTRYPOINT ["/bin/tini", "--", "sh", "/app/startup.sh"]

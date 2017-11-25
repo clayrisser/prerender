@@ -5,7 +5,7 @@ import { Logger, transports } from 'winston';
 
 const { env } = process;
 const config = {
-  port: env.PORT ? Number(env.PORT) : 3000,
+  port: env.PORT ? Number(env.PORT) : 8803,
   host: env.HOST || '',
   timeout: env.TIMEOUT ? Number(env.TIMEOUT) : null,
   logLevel: env.DEBUG === 'true' ? 'debug' : 'info'
