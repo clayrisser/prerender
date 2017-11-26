@@ -66,7 +66,7 @@ async function prerender({ url, host, timeout }) {
           prerender();
         }, timeout);
       } else {
-        window.addEventListener('prerender-ready', function (e) {
+        window.addEventListener('prerender-ready', function(e) {
           prerender();
         }, false);
       }
